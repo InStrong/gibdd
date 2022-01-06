@@ -33,7 +33,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
-        if (update.getMessage().getText().equals("test")) {
+        if (update.getMessage().getText().equals("/imageofaday")) {
             ImageOfADay image = imageOfADayService.getImageOfADay();
             if (image != null) {
                 SendPhoto photo = new SendPhoto();
