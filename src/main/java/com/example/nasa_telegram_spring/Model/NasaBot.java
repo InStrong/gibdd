@@ -28,7 +28,7 @@ public class NasaBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "2113004513:AAHKswwlg2EspzB4zNCuGfdeJU2FGmeYsSU";
+        return "5024807259:AAHKZdxvXdJOgXi2K_JlnwLz7O4Dfq2M3ts";
     }
 
     @SneakyThrows
