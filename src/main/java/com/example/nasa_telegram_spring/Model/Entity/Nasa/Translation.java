@@ -1,4 +1,4 @@
-package com.example.nasa_telegram_spring.Model.Entity;
+package com.example.nasa_telegram_spring.Model.Entity.Nasa;
 
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonInclude;

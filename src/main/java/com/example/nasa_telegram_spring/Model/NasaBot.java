@@ -1,13 +1,12 @@
 package com.example.nasa_telegram_spring.Model;
 
-import com.example.nasa_telegram_spring.Model.Entity.ImageOfADay;
-import com.example.nasa_telegram_spring.Repository.ImageOfADayRepository;
+import com.example.nasa_telegram_spring.Model.Entity.Nasa.ImageOfADay;
 import com.example.nasa_telegram_spring.Service.ImageOfADayService;
 import com.example.nasa_telegram_spring.Service.YandexTranslateService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;

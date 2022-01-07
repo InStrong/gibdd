@@ -1,7 +1,7 @@
 package com.example.nasa_telegram_spring.Service;
 
-import com.example.nasa_telegram_spring.Model.Entity.IAmToken;
-import com.example.nasa_telegram_spring.Model.Entity.TranslationBody;
+import com.example.nasa_telegram_spring.Model.Entity.Nasa.IAmToken;
+import com.example.nasa_telegram_spring.Model.Entity.Nasa.TranslationBody;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.http.HttpEntity;

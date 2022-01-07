@@ -1,6 +1,6 @@
 package com.example.nasa_telegram_spring.Service;
 
-import com.example.nasa_telegram_spring.Model.Entity.ImageOfADay;
+import com.example.nasa_telegram_spring.Model.Entity.Nasa.ImageOfADay;
 import com.example.nasa_telegram_spring.Repository.ImageOfADayRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;

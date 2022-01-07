@@ -1,6 +1,6 @@
 package com.example.nasa_telegram_spring.Repository;
 
-import com.example.nasa_telegram_spring.Model.Entity.ImageOfADay;
+import com.example.nasa_telegram_spring.Model.Entity.Nasa.ImageOfADay;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
