@@ -3,15 +3,19 @@ package com.example.nasa_telegram_spring.Service;
 import com.example.nasa_telegram_spring.Model.Entity.ImageOfADay;
 import com.example.nasa_telegram_spring.Repository.ImageOfADayRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ImageOfADayService {
 
     private final ImageOfADayRepository imageOfADayRepository;
@@ -34,5 +38,12 @@ public class ImageOfADayService {
             image = imageOfADayRepository.getFirstByDateOrderByDate();
         }
         return image;
+    }
+
+    @SneakyThrows
+    @Scheduled(fixedRate = 1000 * 60 * 5)
+    private void pingSite() {
+        boolean reachable = InetAddress.getByName("https://google.com/").isReachable(100);
+        log.info("google ping :" + reachable);
     }
 }
