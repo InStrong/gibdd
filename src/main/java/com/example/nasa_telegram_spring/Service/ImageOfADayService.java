@@ -22,7 +22,7 @@ public class ImageOfADayService {
     private final String NASA_TOKEN = "TfVQEzsdBvQX5M9O75ozXFavFkdimQ24i4RJISY0";
     private final String IMAGE_OF_A_DAY_URL = "https://api.nasa.gov/planetary/apod?api_key=";
 
-    @Scheduled(cron = "0 0 18,0 * * *")
+    @Scheduled(fixedRate = 1000 * 60 * 60)
     public void saveImageOfADay() {
         RestTemplate restTemplate = new RestTemplate();
         ImageOfADay image = restTemplate.getForObject(IMAGE_OF_A_DAY_URL + NASA_TOKEN, ImageOfADay.class);
@@ -43,7 +43,7 @@ public class ImageOfADayService {
     @SneakyThrows
     @Scheduled(fixedRate = 1000 * 60 * 5)
     private void pingSite() {
-        boolean reachable = InetAddress.getByName("https://google.com/").isReachable(100);
+        boolean reachable = InetAddress.getByName("java.sun.com").isReachable(100);
         log.info("google ping :" + reachable);
     }
 }
