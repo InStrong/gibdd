@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -41,7 +42,11 @@ public class NasaBot extends TelegramLongPollingBot {
                 file.setMedia(image.getUrl());
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
-                photo.setCaption(image.getTitle() + " (" + image.getDate() + ") " + "\n\n" + image.getExplanation());
+                String explanation = image.getExplanation();
+                if (explanation.length() > 1020) {
+                    explanation = explanation.substring(0, 1020);
+                }
+                photo.setCaption(image.getTitle() + " (" + image.getDate() + ") " + "\n\n" + explanation);
                 execute(photo);
             }
             else {
@@ -56,10 +61,14 @@ public class NasaBot extends TelegramLongPollingBot {
                 file.setMedia(image.getUrl());
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
+                String explanation = image.getExplanation();
+                if (explanation.length() > 1020) {
+                    explanation = explanation.substring(0, 1020);
+                }
                 photo.setCaption(yandexTranslateService.translateFromEnToRu(image.getTitle())
                         + " (" + image.getDate() + ") "
                         + "\n\n"
-                        + yandexTranslateService.translateFromEnToRu(image.getExplanation())
+                        + yandexTranslateService.translateFromEnToRu(explanation)
                         + "\nПереведено с помощью Yandex.Translate");
                 execute(photo);
             }
