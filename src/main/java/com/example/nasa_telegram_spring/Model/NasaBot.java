@@ -43,7 +43,7 @@ public class NasaBot extends TelegramLongPollingBot {
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
                 String explanation = image.getExplanation();
-                if (explanation.length() > 1020) {
+                if (explanation.length() > 900) {
                     explanation = explanation.substring(0, 1020);
                 }
                 photo.setCaption(image.getTitle() + " (" + image.getDate() + ") " + "\n\n" + explanation);
@@ -62,8 +62,8 @@ public class NasaBot extends TelegramLongPollingBot {
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
                 String explanation = image.getExplanation();
-                if (explanation.length() > 1020) {
-                    explanation = explanation.substring(0, 1020);
+                if (explanation.length() > 900) {
+                    explanation = explanation.substring(0, 900);
                 }
                 photo.setCaption(yandexTranslateService.translateFromEnToRu(image.getTitle())
                         + " (" + image.getDate() + ") "
