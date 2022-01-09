@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -42,12 +41,9 @@ public class NasaBot extends TelegramLongPollingBot {
                 file.setMedia(image.getUrl());
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
-                String explanation = image.getExplanation();
-                if (explanation.length() > 900) {
-                    explanation = explanation.substring(0, 1020);
-                }
-                photo.setCaption(image.getTitle() + " (" + image.getDate() + ") " + "\n\n" + explanation);
+                photo.setCaption(image.getTitle() + " (" + image.getDate() + ") ");
                 execute(photo);
+                sendMessage(update.getMessage().getChatId().toString(), image.getExplanation());
             }
             else {
                 execute(SendMessage.builder().text("error").chatId(update.getMessage().getChatId().toString()).build());
@@ -61,20 +57,22 @@ public class NasaBot extends TelegramLongPollingBot {
                 file.setMedia(image.getUrl());
                 photo.setPhoto(file);
                 photo.setChatId(update.getMessage().getChatId().toString());
-                String explanation = image.getExplanation();
-                if (explanation.length() > 900) {
-                    explanation = explanation.substring(0, 900);
-                }
-                photo.setCaption(yandexTranslateService.translateFromEnToRu(image.getTitle())
-                        + " (" + image.getDate() + ") "
-                        + "\n\n"
-                        + yandexTranslateService.translateFromEnToRu(explanation)
-                        + "\nПереведено с помощью Yandex.Translate");
+                photo.setCaption(yandexTranslateService.translateFromEnToRu(image.getTitle()) + " (" + image.getDate() + ") ");
                 execute(photo);
+                sendMessage(update.getMessage().getChatId().toString(), yandexTranslateService.translateFromEnToRu(image.getExplanation())
+                        + "\nПереведено с помощью Yandex.Translate");
             }
             else {
                 execute(SendMessage.builder().text("error").chatId(update.getMessage().getChatId().toString()).build());
             }
         }
+    }
+
+    @SneakyThrows
+    private void sendMessage(String chatId, String text) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setText(text);
+        sendMessage.setChatId(chatId);
+        execute(sendMessage);
     }
 }
