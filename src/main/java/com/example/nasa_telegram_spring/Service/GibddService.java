@@ -52,6 +52,7 @@ public class GibddService {
         log.info("started");
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(generateUrl());
+        log.info(generateUrl());
         HttpResponse response = httpclient.execute(httppost);
         HttpEntity entity = response.getEntity();
         if (entity != null) {
