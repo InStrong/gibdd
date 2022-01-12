@@ -56,6 +56,7 @@ public class GibddService {
         HttpEntity entity = response.getEntity();
         if (entity != null) {
             String retSrc = EntityUtils.toString(entity);
+            log.info(retSrc);
             ObjectMapper mapper = new ObjectMapper();
             List<Fine> parsedFines = mapper.readValue(retSrc, Gibdd.class).getFines();
             log.info(parsedFines.toString());
