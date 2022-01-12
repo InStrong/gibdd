@@ -47,7 +47,7 @@ public class GibddService {
     private final String PHOTOS_URL = "https://xn--b1afk4ade.xn--90adear.xn--p1ai/proxy/check/fines/pics?";
 
     @SneakyThrows
-    @Scheduled(fixedRate = 1000 * 60 * 60 * 24)
+    @Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
     public void parseFines() {
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(generateUrl());
