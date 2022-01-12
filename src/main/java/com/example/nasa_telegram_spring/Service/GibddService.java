@@ -54,11 +54,15 @@ public class GibddService {
         HttpPost httppost = new HttpPost(generateUrl());
         log.info(generateUrl());
         HttpResponse response = httpclient.execute(httppost);
+        log.info("1");
         HttpEntity entity = response.getEntity();
+        log.info("2");
         if (entity != null) {
+            log.info("3");
             String retSrc = EntityUtils.toString(entity);
             log.info(retSrc);
             ObjectMapper mapper = new ObjectMapper();
+            log.info("4");
             List<Fine> parsedFines = mapper.readValue(retSrc, Gibdd.class).getFines();
             log.info(parsedFines.toString());
             fineRepository.deleteAll();
