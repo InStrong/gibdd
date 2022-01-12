@@ -58,6 +58,7 @@ public class GibddService {
             String retSrc = EntityUtils.toString(entity);
             ObjectMapper mapper = new ObjectMapper();
             List<Fine> parsedFines = mapper.readValue(retSrc, Gibdd.class).getFines();
+            log.info(parsedFines.toString());
             fineRepository.deleteAll();
             fineRepository.saveAll(parsedFines);
             parsePhotos(parsedFines);
