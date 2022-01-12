@@ -49,6 +49,7 @@ public class GibddService {
     @SneakyThrows
     @Scheduled(fixedDelay = 1000 * 60 * 60 * 24)
     public void parseFines() {
+        log.info("started");
         HttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(generateUrl());
         HttpResponse response = httpclient.execute(httppost);
