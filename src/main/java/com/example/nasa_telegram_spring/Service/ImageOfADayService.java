@@ -39,11 +39,4 @@ public class ImageOfADayService {
         }
         return image;
     }
-
-    @SneakyThrows
-    @Scheduled(fixedRate = 1000 * 60 * 5)
-    private void pingSite() {
-        boolean reachable = InetAddress.getByName("java.sun.com").isReachable(100);
-        log.info("google ping :" + reachable);
-    }
 }

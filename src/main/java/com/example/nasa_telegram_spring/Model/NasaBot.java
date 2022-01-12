@@ -6,6 +6,7 @@ import com.example.nasa_telegram_spring.Service.YandexTranslateService;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -19,6 +20,8 @@ public class NasaBot extends TelegramLongPollingBot {
 
     private final ImageOfADayService imageOfADayService;
     private final YandexTranslateService yandexTranslateService;
+    @Value("${nasa.dota.token}")
+    String token;
 
     @Override
     public String getBotUsername() {
@@ -27,7 +30,7 @@ public class NasaBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "5024807259:AAHKZdxvXdJOgXi2K_JlnwLz7O4Dfq2M3ts";
+        return token;
     }
 
     @SneakyThrows

@@ -10,6 +10,7 @@ import com.vdurmont.emoji.EmojiParser;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -34,6 +35,8 @@ public class DotaBot extends TelegramLongPollingBot {
     private final String OPEN_DOTA_URL = "https://api.opendota.com";
     private final static String CORRECT = ":white_check_mark:";
     private final static String WRONG = ":no_entry:";
+    @Value("${bot.dota.token}")
+    String token;
 
     @Override
     public String getBotUsername() {
@@ -42,7 +45,7 @@ public class DotaBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "5091575826:AAFl595WrZRPfnlNHaYix7jhEJtEPA7z6vQ";
+        return token;
     }
 
     @SneakyThrows
